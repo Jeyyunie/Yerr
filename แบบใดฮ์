@@ -1,0 +1,164 @@
+#นำเข้าทุกฟังก์ชั่นในโมดูล tkinter
+from tkinter import*
+
+#สร้างฟังก์ชันหาผลบวก
+def plus():
+    no1=float(num1.get())
+    no2=float(num2.get())
+    total=no1+no2
+    result.set(total)
+    
+#สร้างฟังก์ชั่นรีเซต    
+def reset():
+    num1.set("")
+    num2.set("")
+    result.set("")     
+    ent1.focus_set()
+    
+#สร้างวินโดว์หลักจากคลาส Tk()
+window=Tk()
+
+#กำหนดคุณสมบัติของวินโดว์หลัก
+window.title("นายทองพูน แพงมา ชั้นม.3/0  เลขที่ 0")
+window.geometry("640x380")
+window.resizable(0,0)
+window.config(bg="navy")
+
+#ประกาศตัวแปร
+num1=StringVar()
+num2=StringVar()
+result=StringVar()
+
+#สร้างข้อความ โปรแกรมบวกเลขสองจำนวน ตัวหนังสือสีน้ำตาล ฉากหลังสีชมพู ไว้กลางวินโดว์
+lbl1=Label(
+    window,text="โปรแกรมบวกเลขสองจำนวน",
+    fg='navy',
+    bg='yellow',
+    width=21,
+    relief=GROOVE,
+    font='THSarabunPSK 30 bold'
+    )
+lbl1.place(x=150,y=50)
+
+#สร้างข้อความ ป้อนตัวเลขจำนวนที่ 1 
+lbl2=Label(
+    window,
+    text="ป้อนตัวเลขจำนวนที่ 1 ",
+    fg='navy',
+    bg='pink',
+    font='THSarabunPSK 18 bold',
+
+    )
+lbl2.place(x=150,y=150)
+
+#สร้างข้อความ ป้อนตัวเลขจำนวนที่ 2
+lbl2=Label(
+    window,
+    text="ป้อนตัวเลขจำนวนที่ 2 ",
+    fg='navy',
+    bg='pink',
+    font='THSarabunPSK 18 bold',
+
+    )
+lbl2.place(x=150,y=200)
+
+#สร้างข้อความ ผลลัพธ์เท่ากับ 
+lbl3=Label(
+    window,
+    text="ผลลัพธ์เท่ากับ ",
+    fg='navy',
+    bg='white',
+    font='THSarabunPSK 18 bold',
+    width=16,
+    )
+lbl3.place(x=150,y=250)
+
+#สร้างช่องรับข้อมูลตัวเลขจำนวนที่ 1
+ent1=Entry(
+    window,
+    textvariable=num1,
+    width='16',
+    font='THSarabunPSK 18 bold',
+    bg='light gray'
+    )
+ent1.focus_set()
+ent1.place(x=330,y=150)
+
+#สร้างช่องรับข้อมูลตัวเลขจำนวนที่ 2
+ent2=Entry(
+    window,textvariable=num2,
+    width='16',
+    font='THSarabunPSK 18 bold',
+    bg='light gray'
+    )
+ent2.place(x=330,y=200)
+
+#สร้างช่องแสดงผลลัพธ์จากการบวก
+ent3=Entry(
+    window,
+    textvariable=result,
+    width='16',
+    font='THSarabunPSK 18 bold',
+    state=DISABLED
+    )
+ent3.place(x=330,y=250)
+
+#สร้างปุ่ม Compute
+btn1=Button(
+        window,
+        text="Compute",
+        fg='white',
+        bg='green',
+        width=10,
+        relief='groove',
+        command=plus)
+btn1.place(x=150,y=300)
+
+#สร้างปุ่ม Reset
+btn1=Button(
+    window,
+    text="Reset",
+    fg='navy',
+    bg='yellow',
+    width=10,
+    relief='ridge',
+    command=reset
+    )
+btn1.place(x=285,y=300)
+
+#สร้างปุ่ม Exit
+btn1=Button(
+    window,
+    text="Exit",
+    fg='white',
+    bg='red',
+    relief='raised',
+    width=10,
+    command=window.destroy
+    )
+btn1.place(x=415,y=300)
+
+#ใช้คลาส PhotoImage สร้างตัวโหลดภาพ ที่ 1
+img = PhotoImage(file='tppm2.png') #กำหนดไฟล์ภาพที่จะแสดงในตัวแปรimg
+w = img.width() #ความกว้างรูปภาพ
+h = img.height()#ความสูงรูปภาพ
+
+#ใช้คลาส Canvas แสดงผลภาพ
+cv = Canvas (width=w, height=h)#สร้าง Canvas ให้มีขนาดเท่ากับรูปภาพ
+cv.create_image (0, 0, anchor=NW, image=img)#วางภาพโดยให้มุมบนซ้ายของภาพอยู่ที่ตําแหน่ง(x, y)ของcanvas 
+cv.image = img          #ให้ Canvas เก็บตัวแปรภาพเอาไว้
+cv.place(x=503,y=180)#(x=505,y=5)แสดงภาพตามพิกัด
+
+#ใช้คลาส PhotoImage สร้างตัวโหลดภาพ ที่ 2
+img1 = PhotoImage(file='skw2.png') #กำหนดไฟล์ภาพที่จะแสดงในตัวแปรimg
+w = img.width() #ความกว้างรูปภาพ
+h = img.height()#ความสูงรูปภาพ
+
+
+cv1 = Canvas (width=w, height=h)
+cv1.create_image (0, 0, anchor=NW, image=img1)
+cv1.image = img1 
+cv1.place(x=5,y=180)
+
+#แสดงวินโดว์ไว้ที่หน้าจอตลอดเวลาที่โปรแกรมทำงาน
+window.mainloop()
